@@ -1,0 +1,28 @@
+{
+  "name": "pi-extensions",
+  "version": "1.0.0",
+  "description": "Collection of extensions and themes for Pi Coding Agent",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luongnv89/pi-extensions"
+  },
+  "keywords": [
+    "pi",
+    "coding-agent",
+    "extensions",
+    "themes",
+    "context-window",
+    "monitoring"
+  ],
+  "author": "luongnv89",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "install-all": "cp -r extensions/* ~/.pi/agent/extensions/ && cp -r themes/* ~/.pi/agent/themes/ && echo 'Installation complete. Please reload Pi.'",
+    "install-extensions": "cp -r extensions/* ~/.pi/agent/extensions/ && echo 'Extensions installed. Please reload Pi.'",
+    "install-themes": "cp -r themes/* ~/.pi/agent/themes/ && echo 'Themes installed. Please reload Pi.'"
+  }
+}
