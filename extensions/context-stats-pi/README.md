@@ -49,9 +49,6 @@ Once installed, the extension automatically displays in your Pi status line:
 #### `/context-stats`
 Shows a full context usage report with historical data.
 
-#### `/context-compact`
-Displays zone-specific recommendations for your current context state.
-
 ## Understanding the Zones
 
 ### Standard Models (≤ 500k context window)

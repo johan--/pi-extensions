@@ -101,21 +101,6 @@ export default function contextStatsPiExtension(pi: ExtensionAPI) {
 		},
 	});
 
-	pi.registerCommand("context-compact", {
-		description: "Show when compaction might be needed",
-		handler: async (args, ctx) => {
-			const usage = ctx.getContextUsage?.();
-			if (!usage || !ctx.model) {
-				ctx.ui.notify("Unable to determine context metrics", "error");
-				return;
-			}
-
-			const contextUsageRatio = usage.tokens / (ctx.model.contextWindow || 200000);
-			const recommendation = getZoneRecommendation(contextUsageRatio, ctx.model.contextWindow || 200000);
-
-			ctx.ui.notify(recommendation, contextUsageRatio > 0.7 ? "warning" : "info");
-		},
-	});
 
 	// Helper functions
 	function updateStatusline(ctx: ExtensionContext) {
@@ -189,15 +174,6 @@ export default function contextStatsPiExtension(pi: ExtensionAPI) {
 		}
 	}
 
-	function getZoneRecommendation(contextUsageRatio: number, contextWindow: number): string {
-		const zone = getZone(contextUsageRatio, contextWindow);
-
-		if (zone.includes("Plan")) return "✅ Safe to plan and code";
-		if (zone.includes("Code")) return "⚠️ Avoid starting new tasks; finish current one";
-		if (zone.includes("Dump")) return "🟠 Consider `/compact focus on X` or delegate to subagent";
-		if (zone.includes("ExDump")) return "🔴 Run `/compact` now before quality degrades further";
-		return "⚫ Start a new session with `/clear`";
-	}
 
 	function getZoneEmoji(zone: string): string {
 		switch (zone) {
