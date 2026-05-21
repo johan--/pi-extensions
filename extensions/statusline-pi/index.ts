@@ -96,8 +96,9 @@ export default function statuslinePiExtension(pi: ExtensionAPI) {
 					const segments = [
 						theme.fg("mdLink", dir),
 						formatGitSection(theme, branch, changed, gitInfo.prNumber),
-						formatContextSection(theme, usage, zone),
+						formatRemainingContext(theme, usage),
 						theme.fg("mdLink", model),
+						formatZone(theme, zone, usage.usedRatio),
 					].filter((segment): segment is string => Boolean(segment));
 
 					const separator = theme.fg("borderMuted", " │ ");
@@ -251,8 +252,8 @@ function formatContextSection(
 	usage: ReturnType<typeof getUsage>,
 	zone: string,
 ): string {
-	const color = getZoneColor(zone);
-	return theme.fg(color, `${usage.remainingTokens.toLocaleString()} (${usage.remainingPercent.toFixed(1)}%) ${zone}`);
+	const color = usage.remainingPercent <= 20 ? "warning" : "mdLink";
+	return theme.fg(color, `${usage.remainingTokens.toLocaleString()} (${usage.remainingPercent.toFixed(1)}%)`);
 }
 
 function getZoneColor(zone: string): "success" | "warning" | "error" | "dim" {
