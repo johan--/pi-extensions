@@ -88,7 +88,7 @@ export default function statuslinePiExtension(pi: ExtensionAPI) {
 				render(width: number): string[] {
 					const usage = getUsage(ctx);
 					const zone = getZone(usage.usedRatio, usage.contextWindow);
-					const model = formatModelName(ctx);
+					const model = formatModelName(ctx, pi);
 					const dir = path.basename(ctx.cwd) || ctx.cwd;
 					const branch = gitInfo.branch ?? footerData.getGitBranch?.() ?? "no-git";
 					const changed = gitInfo.changedFiles;
@@ -270,8 +270,12 @@ function getZoneColor(zone: string): "success" | "warning" | "error" | "dim" {
 	}
 }
 
-function formatModelName(ctx: ExtensionContext): string {
+function formatModelName(ctx: ExtensionContext, pi: ExtensionAPI): string {
 	const provider = ctx.model?.provider;
 	const model = ctx.model?.id ? ctx.model.id.replace(/^models\//, "") : "no-model";
-	return provider ? `${provider}/${model}` : model;
+	const supportsReasoning = ctx.model?.reasoning ?? false;
+	const thinking = pi.getThinkingLevel?.() ?? "off";
+	const thinkingDisplay = thinking !== "off" ? thinking : supportsReasoning ? "T" : "–";
+	const modelPart = provider ? `${provider}/${model}` : model;
+	return `${modelPart} [${thinkingDisplay}]`;
 }
