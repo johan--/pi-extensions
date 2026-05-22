@@ -15,25 +15,28 @@ A curated collection of extensions and themes for [Pi Coding Agent](https://gith
 
 ## Quick Start
 
+### One-liner install (recommended)
+
 ```bash
-# Clone the repo
+curl -fsSL https://raw.githubusercontent.com/luongnv89/pi-extensions/main/install.sh | bash -s -- --auto
+```
+
+### From cloned repo
+
+```bash
 git clone https://github.com/luongnv89/pi-extensions ~/.pi/pi-extensions
-
-# Install all extensions and themes
-~/.pi/pi-extensions/install.sh
-
-# Reload Pi
-# Open Pi and type: /reload
+~/.pi/pi-extensions/install.sh --auto
 ```
 
-Manual install:
+### Interactive install (legacy)
 
 ```bash
-cp -r ~/.pi/pi-extensions/extensions/* ~/.pi/agent/extensions/
-cp -r ~/.pi/pi-extensions/themes/* ~/.pi/agent/themes/
+~/.pi/pi-extensions/install.sh
 ```
 
-## Extension: statusline-pi
+Then reload Pi → open Pi and type `/reload`
+
+## License statusline-pi
 
 `statusline-pi` replaces Pi's default footer with a compact project statusline.
 
@@ -96,6 +99,16 @@ cp ~/.pi/pi-extensions/themes/neon-green-light.json ~/.pi/agent/themes/
 
 Select a theme from Pi's `/settings`, then reload if needed.
 
+## Install Flags
+
+| Flag        | Effect                                          |     |
+|-------------|-------------------------------------------------|-----|
+| `--auto`    | Skip prompts, install everything automatically  |     |
+| `--keep`    | Keep the cloned repo after installation         |
+| `--dry-run` | Show what would be installed without copying    |     |
+| `--repo-url URL` | Use a custom repo URL (default: GitHub)  |     |
+| `--branch BRANCH` | Use a custom branch (default: `main`)   |     |
+
 ## Directory Structure
 
 ```text
@@ -117,8 +130,7 @@ pi-extensions/
 ```bash
 cd ~/.pi/pi-extensions
 git pull origin main
-cp -r extensions/* ~/.pi/agent/extensions/
-cp -r themes/* ~/.pi/agent/themes/
+~/.pi/pi-extensions/install.sh --auto
 ```
 
 Then run `/reload` in Pi.

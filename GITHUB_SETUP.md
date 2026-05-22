@@ -44,10 +44,9 @@ Your repository is now public and ready for others to use!
 
 ### Share the repo:
 
-**Installation command for others:**
+**Installation command for others (one-liner):**
 ```bash
-git clone https://github.com/luongnv89/pi-extensions ~/.pi/pi-extensions
-~/.pi/pi-extensions/install.sh
+curl -fsSL https://raw.githubusercontent.com/luongnv89/pi-extensions/main/install.sh | bash -s -- --auto
 ```
 
 **Or point them to:** https://github.com/luongnv89/pi-extensions
@@ -55,12 +54,19 @@ git clone https://github.com/luongnv89/pi-extensions ~/.pi/pi-extensions
 ## 📝 Quick Commands Reference
 
 ```bash
-# Clone on any machine
-git clone https://github.com/luongnv89/pi-extensions ~/.pi/pi-extensions
+# One-liner install (recommended)
+curl -fsSL https://raw.githubusercontent.com/luongnv89/pi-extensions/main/install.sh | bash -s -- --auto
+
+# Or clone and install
+mkdir -p ~/.pi && cd ~/.pi
+git clone https://github.com/luongnv89/pi-extensions pi-extensions
+cd pi-extensions
+./install.sh --auto
 
 # Update to latest
 cd ~/.pi/pi-extensions
 git pull origin main
+./install.sh --auto
 
 # Add a new extension
 mkdir -p extensions/my-extension
