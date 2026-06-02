@@ -18,7 +18,17 @@ A curated collection of extensions and themes for [Pi Coding Agent](https://gith
 
 ## Screenshots
 
-![statusline-pi screenshot](statusline-pi.png)
+### statusline-pi
+
+![statusline-pi — custom footer with git, PR, context, and model](assets/statusline-pi.png)
+
+### advisor-pi
+
+![advisor-pi — strategic guidance from a higher-capability model](assets/advisor-pi.png)
+
+### grok-pi
+
+![grok-pi — Grok CLI models in Pi](assets/grok-pi.png)
 
 ## Quick Start
 
