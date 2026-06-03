@@ -2,6 +2,8 @@
 
 Use **Grok CLI session models** inside **Pi Coding Agent** — including **Composer 2.5** (`grok-composer-2.5-fast`) and **Grok Build** (`grok-build`).
 
+![grok-pi screenshot](../../assets/grok-pi.png)
+
 This extension registers a Pi provider named `grok-cli` that talks to the same backend the Grok CLI uses (`cli-chat-proxy.grok.com`), reusing your existing `~/.grok/auth.json` login. It is **not** the official xAI API-key provider (`xai` / `XAI_API_KEY`).
 
 ## What you get

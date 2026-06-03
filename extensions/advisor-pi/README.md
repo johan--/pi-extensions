@@ -2,6 +2,8 @@
 
 Advisor-style strategic guidance for Pi Coding Agent.
 
+![advisor-pi screenshot](../../assets/advisor-pi.png)
+
 `advisor-pi` adds an LLM-callable `advisor` tool. During complex workflows, the
 executor model can pause and consult a configured higher-capability advisor model
 for planning, risk analysis, course correction, or review guidance.

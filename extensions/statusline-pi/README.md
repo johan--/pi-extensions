@@ -1,5 +1,7 @@
 # statusline-pi
 
+![statusline-pi screenshot](../../assets/statusline-pi.png)
+
 Compact project statusline footer for Pi.
 
 Format:

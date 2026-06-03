@@ -10,6 +10,9 @@ pi-extensions/
 │   ├── advisor-pi/
 │   │   ├── package.json          # Extension metadata, pi entry point
 │   │   └── src/index.ts          # Advisor tool + command configuration
+│   ├── opencode-pi/
+│   │   ├── package.json          # OpenCode CLI provider bridge
+│   │   └── src/index.ts          # registerProvider + CLI stream adapter
 │   └── statusline-pi/
 │       ├── package.json          # Extension metadata, pi entry point
 │       └── src/index.ts          # Default export → ExtensionAPI handler
@@ -169,6 +172,22 @@ Key implementation points:
 
 `statusline-pi` replaces the footer with compact git, PR, context, and model
 status.
+
+### opencode-pi
+
+`opencode-pi` registers an `opencode-cli` provider with a custom `streamSimple`
+implementation. It discovers local free OpenCode models via `opencode models
+opencode`, then delegates each turn to `opencode run --format json`.
+
+Key implementation points:
+
+- A temporary OpenCode project and locked-down `pi-model` agent are created for
+  every turn so OpenCode's own tools are denied.
+- Pi context and tool schemas are serialized into the prompt.
+- `<pi_tool_call>{...}</pi_tool_call>` markers returned by the model are parsed
+  into Pi `toolCall` content blocks so Pi, not OpenCode, executes tools.
+- `/opencode-pi` reports status, model list, test commands, and environment
+  variable configuration.
 
 ## Adding a New Extension
 

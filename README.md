@@ -11,6 +11,7 @@ A curated collection of extensions and themes for [Pi Coding Agent](https://gith
 - **statusline-pi** — Compact custom footer showing current directory, git branch, changed files, GitHub PR number, remaining context window (tokens + percentage), context zone, and active provider/model.
 - **advisor-pi** — Advisor-style strategic guidance tool that lets the executor consult a configured higher-capability model during complex workflows.
 - **grok-pi** — Bridge Grok CLI session models (Composer 2.5, Grok Build) into Pi via `grok-cli` and `~/.grok/auth.json`.
+- **opencode-pi** — Bridge local OpenCode CLI free models into Pi without OpenCode login, with OpenCode tools disabled and Pi tool calls prompt-bridged back into Pi.
 - **Neon Green themes** — Futuristic dark (`neon-green`) and light (`neon-green-light`) themes with neon green, cyan, and magenta accents.
 - **One-command install** — Interactive or automated (`--auto`) installer via a single curl pipe.
 - **npm convenience scripts** — `install-all`, `install-extensions`, `install-themes` for local development.
@@ -94,6 +95,20 @@ pi --provider grok-cli --model grok-composer-2.5-fast
 
 **Commands:** `/grok-pi status`, `/grok-pi help`
 
+### opencode-pi
+
+`opencode-pi` registers the **`opencode-cli`** provider so Pi can use free models exposed by the local OpenCode CLI, without `opencode auth login`.
+
+![opencode-pi — OpenCode CLI free models in Pi](assets/opencode-pi.png)
+
+Full setup: [extensions/opencode-pi/README.md](extensions/opencode-pi/README.md)
+
+```bash
+pi --provider opencode-cli --model opencode/deepseek-v4-flash-free
+```
+
+**Commands:** `/opencode-pi status`, `/opencode-pi models`, `/opencode-pi test`, `/opencode-pi help`
+
 ### advisor-pi
 
 `advisor-pi` registers an `advisor` tool for strategic planning and course correction.
@@ -171,6 +186,14 @@ pi-extensions/
 │   └── CHANGELOG.md
 ├── extensions/
 │   ├── advisor-pi/
+│   │   ├── package.json
+│   │   ├── src/index.ts
+│   │   └── README.md
+│   ├── grok-pi/
+│   │   ├── package.json
+│   │   ├── src/index.ts
+│   │   └── README.md
+│   ├── opencode-pi/
 │   │   ├── package.json
 │   │   ├── src/index.ts
 │   │   └── README.md
